@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_warkop_branch_user,warkop.branch user,model_warkop_branch,group_operational_staff,1,1,1,0
+access_warkop_balance_user,warkop.stock.balance user,model_warkop_stock_balance,group_operational_staff,1,1,1,0
+access_warkop_report_user,warkop.stock.report user,model_warkop_stock_report,group_operational_staff,1,1,1,0
+access_warkop_report_line_user,warkop.stock.report.line user,model_warkop_stock_report_line,group_operational_staff,1,1,1,0
+access_warkop_adjustment_user,warkop.stock.adjustment user,model_warkop_stock_adjustment,group_operational_staff,1,0,0,0
+access_warkop_parameter_user,warkop.purchase.parameter user,model_warkop_purchase_parameter,group_purchasing_manager,1,1,1,0
+access_warkop_sales_import_user,warkop.sales.import user,model_warkop_sales_import,group_purchasing_manager,1,1,1,0
+access_warkop_sales_line_user,warkop.sales.import.line user,model_warkop_sales_import_line,group_purchasing_manager,1,1,1,0
+access_warkop_recommendation_user,warkop.purchase.recommendation user,model_warkop_purchase_recommendation,group_purchasing_manager,1,1,1,1
+access_warkop_order_user,warkop.purchase.order user,model_warkop_purchase_order,group_purchasing_manager,1,1,1,0
+access_warkop_order_owner,warkop.purchase.order owner,model_warkop_purchase_order,group_owner,1,1,0,0
+access_warkop_cash_user,warkop.cash.closing user,model_warkop_cash_closing,group_operational_staff,1,1,1,0
+access_warkop_consolidation_user,warkop.cash.consolidation user,model_warkop_cash_consolidation,group_finance_manager,1,1,1,0
+access_warkop_menu_user,warkop.menu user,model_warkop_menu,group_purchasing_manager,1,1,1,0
+access_warkop_menu_line_user,warkop.menu.line user,model_warkop_menu_line,group_purchasing_manager,1,1,1,0

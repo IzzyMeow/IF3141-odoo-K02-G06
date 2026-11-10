@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_warkop_root" name="Warkop Operations" sequence="10"/>
+    <menuitem id="menu_warkop_inventory" name="Inventory" parent="menu_warkop_root"/>
+    <menuitem id="menu_warkop_stock_report" name="Stock Reports" parent="menu_warkop_inventory"
+              action="action_warkop_stock_report"/>
+    <menuitem id="menu_warkop_balance" name="Branch Balances" parent="menu_warkop_inventory"
+              action="action_warkop_stock_balance"/>
+    <menuitem id="menu_warkop_purchase" name="Purchasing" parent="menu_warkop_root"/>
+    <menuitem id="menu_warkop_parameters" name="Purchase Parameters" parent="menu_warkop_purchase"
+              action="action_warkop_purchase_parameter"/>
+    <menuitem id="menu_warkop_recommendations" name="Recommendations" parent="menu_warkop_purchase"
+              action="action_warkop_purchase_recommendation"/>
+    <menuitem id="menu_warkop_orders" name="Purchase Orders" parent="menu_warkop_purchase"
+              action="action_warkop_purchase_order"/>
+    <menuitem id="menu_warkop_cash" name="Cash" parent="menu_warkop_root"/>
+    <menuitem id="menu_warkop_closings" name="Shift Closings" parent="menu_warkop_cash"
+              action="action_warkop_cash_closing"/>
+    <menuitem id="menu_warkop_consolidation" name="Daily Consolidation" parent="menu_warkop_cash"
+              action="action_warkop_cash_consolidation"/>
+    <menuitem id="menu_warkop_cost" name="Menu Costing" parent="menu_warkop_root"
+              action="action_warkop_menu"/>
+</odoo>
