@@ -1,7 +1,7 @@
 from math import ceil
 
 from odoo import _, api, fields, models
-from odoo.exceptions import AccessError, UserError
+from odoo.exceptions import AccessError, UserError, ValidationError
 
 
 class WarkopPurchaseParameter(models.Model):
@@ -20,6 +20,14 @@ class WarkopPurchaseParameter(models.Model):
          "A purchase parameter must be unique per branch and product."),
     ]
 
+    @api.constrains("safety_stock", "planning_days", "lead_time_days", "purchase_uom_qty")
+    def _check_positive_parameters(self):
+        for parameter in self:
+            if any(value < 0 for value in (
+                parameter.safety_stock, parameter.planning_days, parameter.lead_time_days,
+            )) or parameter.purchase_uom_qty <= 0:
+                raise ValidationError(_("Purchase parameters must be non-negative and the purchase unit must be positive."))
+
 
 class WarkopSalesImport(models.Model):
     _name = "warkop.sales.import"
@@ -34,6 +42,8 @@ class WarkopSalesImport(models.Model):
 
     def action_process(self):
         for batch in self:
+            if not batch.line_ids:
+                raise UserError(_("A sales import must contain at least one line."))
             duplicate = self.env["warkop.sales.import.line"].search([
                 ("import_id.branch_id", "=", batch.branch_id.id),
                 ("import_id.state", "=", "processed"),
@@ -55,11 +65,21 @@ class WarkopSalesImportLine(models.Model):
     quantity = fields.Float(required=True)
     external_ref = fields.Char(required=True)
     sale_date = fields.Date(required=True)
+    total_amount = fields.Float(default=0, required=True)
+    payment_method = fields.Selection([
+        ("cash", "Cash"), ("qris", "QRIS"), ("debit", "Debit"),
+    ], default="cash", required=True)
 
     _sql_constraints = [
         ("external_ref_unique", "unique(import_id, external_ref)",
          "The same POS transaction line cannot be imported twice in one batch."),
     ]
+
+    @api.constrains("quantity", "total_amount")
+    def _check_sales_values(self):
+        for line in self:
+            if line.quantity <= 0 or line.total_amount < 0:
+                raise ValidationError(_("Sales quantity must be positive and amount cannot be negative."))
 
 
 class WarkopPurchaseRecommendation(models.Model):
@@ -77,6 +97,15 @@ class WarkopPurchaseRecommendation(models.Model):
     recommended_qty = fields.Float(readonly=True)
     purchase_qty = fields.Float(readonly=True)
     last_import_at = fields.Datetime(readonly=True)
+    ignored = fields.Boolean(default=False, readonly=True)
+    ignore_reason = fields.Text(readonly=True)
+
+    def action_ignore(self, reason):
+        if not self.env.user.has_group("warkop.group_purchasing_manager"):
+            raise AccessError(_("Only the Purchasing Manager can ignore recommendations."))
+        if not reason:
+            raise UserError(_("An ignore reason is required."))
+        self.write({"ignored": True, "ignore_reason": reason})
 
     @api.model
     def action_calculate(self, branch, products=None):
@@ -170,6 +199,6 @@ class WarkopPurchaseOrder(models.Model):
     def action_reject(self):
         self._require_group("warkop.group_owner")
         self._transition(
-            "waiting_approval", "rejected",
+            "waiting_approval", "draft",
             {"rejection_reason": _("Rejected by %s") % self.env.user.name},
         )

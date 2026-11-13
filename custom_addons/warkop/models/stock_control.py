@@ -71,6 +71,7 @@ class WarkopStockReport(models.Model):
     line_ids = fields.One2many("warkop.stock.report.line", "report_id", required=True)
     verifier_id = fields.Many2one("res.users", readonly=True)
     approver_id = fields.Many2one("res.users", readonly=True)
+    reported_by = fields.Many2one("res.users", default=lambda self: self.env.user, readonly=True, copy=False)
     submitted_at = fields.Datetime(readonly=True)
     approved_at = fields.Datetime(readonly=True)
 
@@ -103,6 +104,8 @@ class WarkopStockReport(models.Model):
         for report in self:
             if report.state != "submitted":
                 raise UserError(_("Only submitted reports can be verified."))
+            if report.reported_by == self.env.user:
+                raise UserError(_("The person who submitted a report cannot verify it."))
             report._transition("submitted", "verified", {"verifier_id": self.env.uid})
             if report.report_type == "waste" or any(line.difference for line in report.line_ids):
                 report.state = "waiting_approval"
@@ -146,6 +149,16 @@ class WarkopStockReport(models.Model):
             report._transition(
                 "waiting_approval", "applied",
                 {"approver_id": self.env.uid, "approved_at": fields.Datetime.now()},
+            )
+
+    def action_reject_adjustment(self):
+        self._require_group("warkop.group_operations_manager")
+        for report in self:
+            if report.state != "waiting_approval":
+                raise UserError(_("Only reports waiting for approval can be rejected."))
+            report._transition(
+                "waiting_approval", "returned",
+                {"rejection_reason": _("Rejected by %s") % self.env.user.name},
             )
 
 

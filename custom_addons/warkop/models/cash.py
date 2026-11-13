@@ -24,6 +24,13 @@ class WarkopCashClosing(models.Model):
                              default="draft", required=True, tracking=True)
     rejection_reason = fields.Text(readonly=True)
     verifier_id = fields.Many2one("res.users", readonly=True)
+    reported_by = fields.Many2one("res.users", default=lambda self: self.env.user,
+                                  readonly=True, copy=False)
+
+    _sql_constraints = [
+        ("closing_shift_unique", "unique(branch_id, closing_date, shift)",
+         "A branch can only have one closing report per date and shift."),
+    ]
 
     @api.depends("cash_counted", "qris_amount", "debit_amount", "deposit_amount")
     def _compute_total(self):
@@ -48,7 +55,17 @@ class WarkopCashClosing(models.Model):
 
     def action_verify(self):
         self._require_group("warkop.group_team_leader")
+        for closing in self:
+            if closing.reported_by == self.env.user:
+                raise UserError(_("The person who submitted a closing cannot verify it."))
         self._transition("submitted", "verified", {"verifier_id": self.env.uid})
+
+    def action_return(self):
+        self._require_group("warkop.group_team_leader")
+        self._transition(
+            "submitted", "returned",
+            {"rejection_reason": _("Returned by %s") % self.env.user.name},
+        )
 
 
 class WarkopCashConsolidation(models.Model):
@@ -63,7 +80,13 @@ class WarkopCashConsolidation(models.Model):
     total_debit = fields.Monetary(compute="_compute_totals", store=True)
     total_deposit = fields.Monetary(compute="_compute_totals", store=True)
     currency_id = fields.Many2one("res.currency", default=lambda self: self.env.company.currency_id)
-    state = fields.Selection([("draft", "Draft"), ("posted", "Posted")], default="draft")
+    state = fields.Selection([
+        ("draft", "Draft"), ("posted", "Posted"),
+        ("needs_review", "Needs Review"), ("reconciled", "Reconciled"),
+    ], default="draft")
+    pos_total = fields.Monetary(compute="_compute_reconciliation", store=True)
+    variance = fields.Monetary(compute="_compute_reconciliation", store=True)
+    reconciliation_note = fields.Text()
 
     @api.depends("closing_ids", "closing_ids.cash_counted", "closing_ids.qris_amount",
                  "closing_ids.debit_amount", "closing_ids.deposit_amount")
@@ -75,6 +98,21 @@ class WarkopCashConsolidation(models.Model):
             consolidation.total_debit = sum(closings.mapped("debit_amount"))
             consolidation.total_deposit = sum(closings.mapped("deposit_amount"))
 
+    @api.depends(
+        "consolidation_date", "closing_ids", "closing_ids.state",
+        "closing_ids.cash_counted", "closing_ids.qris_amount", "closing_ids.debit_amount",
+    )
+    def _compute_reconciliation(self):
+        for consolidation in self:
+            lines = self.env["warkop.sales.import.line"].search([
+                ("import_id.state", "=", "processed"),
+                ("sale_date", "=", consolidation.consolidation_date),
+            ])
+            consolidation.pos_total = sum(lines.mapped("total_amount"))
+            received = (consolidation.total_cash + consolidation.total_qris +
+                        consolidation.total_debit)
+            consolidation.variance = received - consolidation.pos_total
+
     def action_post(self):
         if not self.env.user.has_group("warkop.group_finance_manager"):
             raise AccessError(_("Only the Finance Manager can post a consolidation."))
@@ -83,4 +121,14 @@ class WarkopCashConsolidation(models.Model):
                 closing.state != "verified" for closing in consolidation.closing_ids
             ):
                 raise UserError(_("Only verified cash closings can be consolidated."))
-            consolidation.state = "posted"
+            consolidation.state = "posted" if not consolidation.variance else "needs_review"
+
+    def action_reconcile(self):
+        if not self.env.user.has_group("warkop.group_finance_manager"):
+            raise AccessError(_("Only the Finance Manager can reconcile a consolidation."))
+        for consolidation in self:
+            if consolidation.state != "needs_review":
+                raise UserError(_("Only consolidations needing review can be reconciled."))
+            if not consolidation.reconciliation_note:
+                raise UserError(_("Explain the variance before reconciling the consolidation."))
+            consolidation.state = "reconciled"

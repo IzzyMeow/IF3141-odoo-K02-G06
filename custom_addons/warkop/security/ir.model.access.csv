@@ -7,6 +7,8 @@ access_warkop_adjustment_user,warkop.stock.adjustment user,model_warkop_stock_ad
 access_warkop_parameter_user,warkop.purchase.parameter user,model_warkop_purchase_parameter,group_purchasing_manager,1,1,1,0
 access_warkop_sales_import_user,warkop.sales.import user,model_warkop_sales_import,group_purchasing_manager,1,1,1,0
 access_warkop_sales_line_user,warkop.sales.import.line user,model_warkop_sales_import_line,group_purchasing_manager,1,1,1,0
+access_warkop_sales_import_finance,warkop.sales.import finance,model_warkop_sales_import,group_finance_manager,1,1,1,0
+access_warkop_sales_line_finance,warkop.sales.import.line finance,model_warkop_sales_import_line,group_finance_manager,1,1,1,0
 access_warkop_recommendation_user,warkop.purchase.recommendation user,model_warkop_purchase_recommendation,group_purchasing_manager,1,1,1,1
 access_warkop_order_user,warkop.purchase.order user,model_warkop_purchase_order,group_purchasing_manager,1,1,1,0
 access_warkop_order_owner,warkop.purchase.order owner,model_warkop_purchase_order,group_owner,1,1,0,0
