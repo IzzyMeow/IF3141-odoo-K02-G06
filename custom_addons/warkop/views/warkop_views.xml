@@ -145,39 +145,51 @@
                 <field name="message_ids"/></div></form></field>
     </record>
     <record id="action_warkop_stock_report" model="ir.actions.act_window">
-        <field name="name">Stock Reports</field><field name="res_model">warkop.stock.report</field>
+        <field name="name">Laporan Stock Opname dan Waste</field><field name="res_model">warkop.stock.report</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <record id="action_warkop_stock_verification" model="ir.actions.act_window">
+        <field name="name">Verifikasi Laporan Shift</field><field name="res_model">warkop.stock.report</field>
+        <field name="view_mode">tree,form</field><field name="domain">[('state', '=', 'submitted')]</field>
+    </record>
+    <record id="action_warkop_stock_approval" model="ir.actions.act_window">
+        <field name="name">Persetujuan Penyesuaian Stok</field><field name="res_model">warkop.stock.report</field>
+        <field name="view_mode">tree,form</field><field name="domain">[('state', '=', 'waiting_approval')]</field>
+    </record>
     <record id="action_warkop_stock_balance" model="ir.actions.act_window">
-        <field name="name">Branch Balances</field><field name="res_model">warkop.stock.balance</field>
+        <field name="name">Saldo Stok Cabang</field><field name="res_model">warkop.stock.balance</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_purchase_parameter" model="ir.actions.act_window">
-        <field name="name">Purchase Parameters</field><field name="res_model">warkop.purchase.parameter</field>
+        <field name="name">Parameter Pengadaan</field><field name="res_model">warkop.purchase.parameter</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_purchase_recommendation" model="ir.actions.act_window">
-        <field name="name">Recommendations</field><field name="res_model">warkop.purchase.recommendation</field>
+        <field name="name">Rekomendasi Pembelian</field><field name="res_model">warkop.purchase.recommendation</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_purchase_order" model="ir.actions.act_window">
-        <field name="name">Purchase Orders</field><field name="res_model">warkop.purchase.order</field>
+        <field name="name">Purchase Order</field><field name="res_model">warkop.purchase.order</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_cash_closing" model="ir.actions.act_window">
-        <field name="name">Shift Closings</field><field name="res_model">warkop.cash.closing</field>
+        <field name="name">Tutup Kas Shift</field><field name="res_model">warkop.cash.closing</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_cash_consolidation" model="ir.actions.act_window">
-        <field name="name">Daily Consolidation</field><field name="res_model">warkop.cash.consolidation</field>
+        <field name="name">Konsolidasi Kas Harian</field><field name="res_model">warkop.cash.consolidation</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_sales_import" model="ir.actions.act_window">
-        <field name="name">POS Sales Imports</field><field name="res_model">warkop.sales.import</field>
+        <field name="name">Impor Penjualan POS</field><field name="res_model">warkop.sales.import</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_menu" model="ir.actions.act_window">
-        <field name="name">Menu Costing</field><field name="res_model">warkop.menu</field>
+        <field name="name">Menu dan Resep</field><field name="res_model">warkop.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_warkop_menu_analysis" model="ir.actions.act_window">
+        <field name="name">Analisis HPP dan Margin</field><field name="res_model">warkop.menu</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

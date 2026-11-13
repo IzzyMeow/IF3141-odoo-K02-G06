@@ -2,24 +2,30 @@
 <odoo>
     <menuitem id="menu_warkop_root" name="Warkop Operations" sequence="10"/>
     <menuitem id="menu_warkop_inventory" name="Inventory" parent="menu_warkop_root"/>
-    <menuitem id="menu_warkop_stock_report" name="Stock Reports" parent="menu_warkop_inventory"
+    <menuitem id="menu_warkop_stock_report" name="Laporan Stock Opname dan Waste" parent="menu_warkop_inventory"
               action="action_warkop_stock_report"/>
-    <menuitem id="menu_warkop_balance" name="Branch Balances" parent="menu_warkop_inventory"
+    <menuitem id="menu_warkop_stock_verification" name="Verifikasi Laporan Shift" parent="menu_warkop_inventory"
+              action="action_warkop_stock_verification"/>
+    <menuitem id="menu_warkop_stock_approval" name="Persetujuan Penyesuaian Stok" parent="menu_warkop_inventory"
+              action="action_warkop_stock_approval"/>
+    <menuitem id="menu_warkop_balance" name="Saldo Stok Cabang" parent="menu_warkop_inventory"
               action="action_warkop_stock_balance"/>
     <menuitem id="menu_warkop_purchase" name="Purchasing" parent="menu_warkop_root"/>
-    <menuitem id="menu_warkop_parameters" name="Purchase Parameters" parent="menu_warkop_purchase"
+    <menuitem id="menu_warkop_parameters" name="Parameter Pengadaan" parent="menu_warkop_purchase"
               action="action_warkop_purchase_parameter"/>
-    <menuitem id="menu_warkop_recommendations" name="Recommendations" parent="menu_warkop_purchase"
+    <menuitem id="menu_warkop_recommendations" name="Rekomendasi Pembelian" parent="menu_warkop_purchase"
               action="action_warkop_purchase_recommendation"/>
-    <menuitem id="menu_warkop_sales_import" name="POS Sales Imports" parent="menu_warkop_purchase"
+    <menuitem id="menu_warkop_sales_import" name="Impor Penjualan POS" parent="menu_warkop_purchase"
               action="action_warkop_sales_import"/>
-    <menuitem id="menu_warkop_orders" name="Purchase Orders" parent="menu_warkop_purchase"
+    <menuitem id="menu_warkop_orders" name="Purchase Order" parent="menu_warkop_purchase"
               action="action_warkop_purchase_order"/>
     <menuitem id="menu_warkop_cash" name="Cash" parent="menu_warkop_root"/>
-    <menuitem id="menu_warkop_closings" name="Shift Closings" parent="menu_warkop_cash"
+    <menuitem id="menu_warkop_closings" name="Tutup Kas Shift" parent="menu_warkop_cash"
               action="action_warkop_cash_closing"/>
-    <menuitem id="menu_warkop_consolidation" name="Daily Consolidation" parent="menu_warkop_cash"
+    <menuitem id="menu_warkop_consolidation" name="Konsolidasi Kas Harian" parent="menu_warkop_cash"
               action="action_warkop_cash_consolidation"/>
-    <menuitem id="menu_warkop_cost" name="Menu Costing" parent="menu_warkop_root"
+    <menuitem id="menu_warkop_cost" name="Menu dan Resep" parent="menu_warkop_root"
               action="action_warkop_menu"/>
+    <menuitem id="menu_warkop_menu_analysis" name="Analisis HPP dan Margin" parent="menu_warkop_root"
+              action="action_warkop_menu_analysis"/>
 </odoo>
