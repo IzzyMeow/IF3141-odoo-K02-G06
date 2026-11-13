@@ -11,6 +11,8 @@
               action="action_warkop_purchase_parameter"/>
     <menuitem id="menu_warkop_recommendations" name="Recommendations" parent="menu_warkop_purchase"
               action="action_warkop_purchase_recommendation"/>
+    <menuitem id="menu_warkop_sales_import" name="POS Sales Imports" parent="menu_warkop_purchase"
+              action="action_warkop_sales_import"/>
     <menuitem id="menu_warkop_orders" name="Purchase Orders" parent="menu_warkop_purchase"
               action="action_warkop_purchase_order"/>
     <menuitem id="menu_warkop_cash" name="Cash" parent="menu_warkop_root"/>

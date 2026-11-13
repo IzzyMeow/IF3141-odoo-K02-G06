@@ -44,6 +44,106 @@
             <field name="expected_total"/><field name="rejection_reason"/>
         </group></sheet></form></field>
     </record>
+    <record id="view_warkop_stock_balance_tree" model="ir.ui.view">
+        <field name="name">warkop.stock.balance.tree</field><field name="model">warkop.stock.balance</field>
+        <field name="arch" type="xml"><tree><field name="branch_id"/><field name="product_id"/>
+            <field name="quantity"/><field name="uom_id"/><field name="last_updated"/></tree></field>
+    </record>
+    <record id="view_warkop_purchase_parameter_tree" model="ir.ui.view">
+        <field name="name">warkop.purchase.parameter.tree</field><field name="model">warkop.purchase.parameter</field>
+        <field name="arch" type="xml"><tree><field name="branch_id"/><field name="product_id"/>
+            <field name="safety_stock"/><field name="planning_days"/><field name="lead_time_days"/>
+            <field name="purchase_uom_qty"/></tree></field>
+    </record>
+    <record id="view_warkop_purchase_parameter_form" model="ir.ui.view">
+        <field name="name">warkop.purchase.parameter.form</field><field name="model">warkop.purchase.parameter</field>
+        <field name="arch" type="xml"><form><sheet><group>
+            <field name="branch_id"/><field name="product_id"/><field name="safety_stock"/>
+            <field name="planning_days"/><field name="lead_time_days"/><field name="purchase_uom_qty"/>
+        </group></sheet></form></field>
+    </record>
+    <record id="view_warkop_purchase_recommendation_tree" model="ir.ui.view">
+        <field name="name">warkop.purchase.recommendation.tree</field>
+        <field name="model">warkop.purchase.recommendation</field>
+        <field name="arch" type="xml"><tree><field name="branch_id"/><field name="product_id"/>
+            <field name="projected_usage"/><field name="safety_stock"/><field name="available_stock"/>
+            <field name="open_orders"/><field name="recommended_qty"/><field name="purchase_qty"/>
+            <field name="last_import_at"/><field name="ignored"/></tree></field>
+    </record>
+    <record id="view_warkop_purchase_order_tree" model="ir.ui.view">
+        <field name="name">warkop.purchase.order.tree</field><field name="model">warkop.purchase.order</field>
+        <field name="arch" type="xml"><tree><field name="name"/><field name="branch_id"/>
+            <field name="product_id"/><field name="vendor_id"/><field name="quantity"/>
+            <field name="unit_price"/><field name="amount"/><field name="state"/></tree></field>
+    </record>
+    <record id="view_warkop_purchase_order_form" model="ir.ui.view">
+        <field name="name">warkop.purchase.order.form</field><field name="model">warkop.purchase.order</field>
+        <field name="arch" type="xml"><form><header>
+            <button name="action_confirm" type="object" string="Confirm" class="btn-primary"
+                    invisible="state not in ('draft', 'rejected')"/>
+            <button name="action_approve" type="object" string="Approve"
+                    invisible="state != 'waiting_approval'"/>
+            <button name="action_reject" type="object" string="Reject"
+                    invisible="state != 'waiting_approval'"/>
+            <field name="state" widget="statusbar"/>
+        </header><sheet><group><field name="name"/><field name="branch_id"/>
+            <field name="product_id"/><field name="vendor_id"/><field name="quantity"/>
+            <field name="unit_price"/><field name="amount"/><field name="approval_limit"/>
+            <field name="rejection_reason"/></group></sheet></form></field>
+    </record>
+    <record id="view_warkop_sales_import_tree" model="ir.ui.view">
+        <field name="name">warkop.sales.import.tree</field><field name="model">warkop.sales.import</field>
+        <field name="arch" type="xml"><tree><field name="name"/><field name="branch_id"/>
+            <field name="imported_at"/><field name="state"/></tree></field>
+    </record>
+    <record id="view_warkop_sales_import_form" model="ir.ui.view">
+        <field name="name">warkop.sales.import.form</field><field name="model">warkop.sales.import</field>
+        <field name="arch" type="xml"><form><header>
+            <button name="action_process" type="object" string="Process" class="btn-primary"
+                    invisible="state != 'draft'"/><field name="state" widget="statusbar"/>
+        </header><sheet><group><field name="name"/><field name="branch_id"/>
+            <field name="imported_at"/></group><field name="line_ids"><tree editable="bottom">
+            <field name="external_ref"/><field name="product_id"/><field name="sale_date"/>
+            <field name="quantity"/><field name="total_amount"/><field name="payment_method"/>
+        </tree></field></sheet></form></field>
+    </record>
+    <record id="view_warkop_cash_consolidation_tree" model="ir.ui.view">
+        <field name="name">warkop.cash.consolidation.tree</field>
+        <field name="model">warkop.cash.consolidation</field>
+        <field name="arch" type="xml"><tree><field name="name"/><field name="consolidation_date"/>
+            <field name="total_cash"/><field name="total_qris"/><field name="total_debit"/>
+            <field name="pos_total"/><field name="variance"/><field name="state"/></tree></field>
+    </record>
+    <record id="view_warkop_cash_consolidation_form" model="ir.ui.view">
+        <field name="name">warkop.cash.consolidation.form</field>
+        <field name="model">warkop.cash.consolidation</field>
+        <field name="arch" type="xml"><form><header>
+            <button name="action_post" type="object" string="Consolidate" class="btn-primary"
+                    invisible="state != 'draft'"/>
+            <button name="action_reconcile" type="object" string="Reconcile"
+                    invisible="state != 'needs_review'"/><field name="state" widget="statusbar"/>
+        </header><sheet><group><field name="name"/><field name="consolidation_date"/>
+            <field name="closing_ids"/><field name="total_cash"/><field name="total_qris"/>
+            <field name="total_debit"/><field name="total_deposit"/><field name="pos_total"/>
+            <field name="variance"/><field name="reconciliation_note"/></group></sheet></form></field>
+    </record>
+    <record id="view_warkop_menu_tree" model="ir.ui.view">
+        <field name="name">warkop.menu.tree</field><field name="model">warkop.menu</field>
+        <field name="arch" type="xml"><tree><field name="name"/><field name="sale_price"/>
+            <field name="hpp"/><field name="margin_amount"/><field name="margin_percent"/>
+            <field name="state"/></tree></field>
+    </record>
+    <record id="view_warkop_menu_form" model="ir.ui.view">
+        <field name="name">warkop.menu.form</field><field name="model">warkop.menu</field>
+        <field name="arch" type="xml"><form><header><button name="action_recalculate" type="object"
+            string="Recalculate" class="btn-primary"/><field name="state" widget="statusbar"/></header>
+            <sheet><group><field name="name"/><field name="sale_price"/><field name="waste_percent"/>
+                <field name="hpp"/><field name="margin_amount"/><field name="margin_percent"/></group>
+                <field name="line_ids"><tree editable="bottom"><field name="product_id"/>
+                    <field name="quantity"/><field name="uom_id"/></tree></field>
+            </sheet><div class="oe_chatter"><field name="message_follower_ids"/>
+                <field name="message_ids"/></div></form></field>
+    </record>
     <record id="action_warkop_stock_report" model="ir.actions.act_window">
         <field name="name">Stock Reports</field><field name="res_model">warkop.stock.report</field>
         <field name="view_mode">tree,form</field>
@@ -70,6 +170,10 @@
     </record>
     <record id="action_warkop_cash_consolidation" model="ir.actions.act_window">
         <field name="name">Daily Consolidation</field><field name="res_model">warkop.cash.consolidation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_warkop_sales_import" model="ir.actions.act_window">
+        <field name="name">POS Sales Imports</field><field name="res_model">warkop.sales.import</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="action_warkop_menu" model="ir.actions.act_window">
