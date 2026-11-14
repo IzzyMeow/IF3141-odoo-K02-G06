@@ -89,44 +89,31 @@
         <field name="uom_po_id" ref="uom.product_uom_unit"/>
     </record>
 
-    <record id="rm001_product" model="product.product"><field name="product_tmpl_id" ref="rm001"/></record>
-    <record id="rm002_product" model="product.product"><field name="product_tmpl_id" ref="rm002"/></record>
-    <record id="rm003_product" model="product.product"><field name="product_tmpl_id" ref="rm003"/></record>
-    <record id="rm004_product" model="product.product"><field name="product_tmpl_id" ref="rm004"/></record>
-    <record id="rm005_product" model="product.product"><field name="product_tmpl_id" ref="rm005"/></record>
-    <record id="rm006_product" model="product.product"><field name="product_tmpl_id" ref="rm006"/></record>
-    <record id="rm007_product" model="product.product"><field name="product_tmpl_id" ref="rm007"/></record>
-    <record id="rm008_product" model="product.product"><field name="product_tmpl_id" ref="rm008"/></record>
-    <record id="rm009_product" model="product.product"><field name="product_tmpl_id" ref="rm009"/></record>
-    <record id="rm010_product" model="product.product"><field name="product_tmpl_id" ref="rm010"/></record>
-    <record id="rm011_product" model="product.product"><field name="product_tmpl_id" ref="rm011"/></record>
-    <record id="rm012_product" model="product.product"><field name="product_tmpl_id" ref="rm012"/></record>
-
     <!-- Initial stock and safety stock for both branches -->
-    <record id="stock_dago_rm001" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm001_product"/><field name="quantity">240</field></record>
-    <record id="stock_dago_rm002" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm002_product"/><field name="quantity">180</field></record>
-    <record id="stock_dago_rm003" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm003_product"/><field name="quantity">30000</field></record>
-    <record id="stock_dago_rm004" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm004_product"/><field name="quantity">6000</field></record>
-    <record id="stock_dago_rm005" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm005_product"/><field name="quantity">20000</field></record>
-    <record id="stock_dago_rm006" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm006_product"/><field name="quantity">5000</field></record>
-    <record id="stock_dago_rm007" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm007_product"/><field name="quantity">10000</field></record>
-    <record id="stock_dago_rm008" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm008_product"/><field name="quantity">30000</field></record>
-    <record id="stock_dago_rm009" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm009_product"/><field name="quantity">60</field></record>
-    <record id="stock_dago_rm010" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm010_product"/><field name="quantity">3000</field></record>
-    <record id="stock_dago_rm011" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm011_product"/><field name="quantity">100</field></record>
-    <record id="stock_dago_rm012" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" ref="rm012_product"/><field name="quantity">100</field></record>
-    <record id="stock_siliwangi_rm001" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm001_product"/><field name="quantity">240</field></record>
-    <record id="stock_siliwangi_rm002" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm002_product"/><field name="quantity">180</field></record>
-    <record id="stock_siliwangi_rm003" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm003_product"/><field name="quantity">30000</field></record>
-    <record id="stock_siliwangi_rm004" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm004_product"/><field name="quantity">6000</field></record>
-    <record id="stock_siliwangi_rm005" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm005_product"/><field name="quantity">20000</field></record>
-    <record id="stock_siliwangi_rm006" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm006_product"/><field name="quantity">5000</field></record>
-    <record id="stock_siliwangi_rm007" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm007_product"/><field name="quantity">10000</field></record>
-    <record id="stock_siliwangi_rm008" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm008_product"/><field name="quantity">30000</field></record>
-    <record id="stock_siliwangi_rm009" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm009_product"/><field name="quantity">60</field></record>
-    <record id="stock_siliwangi_rm010" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm010_product"/><field name="quantity">3000</field></record>
-    <record id="stock_siliwangi_rm011" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm011_product"/><field name="quantity">100</field></record>
-    <record id="stock_siliwangi_rm012" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" ref="rm012_product"/><field name="quantity">100</field></record>
+    <record id="stock_dago_rm001" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm001'))]"/><field name="quantity">240</field></record>
+    <record id="stock_dago_rm002" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm002'))]"/><field name="quantity">180</field></record>
+    <record id="stock_dago_rm003" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm003'))]"/><field name="quantity">30000</field></record>
+    <record id="stock_dago_rm004" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm004'))]"/><field name="quantity">6000</field></record>
+    <record id="stock_dago_rm005" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm005'))]"/><field name="quantity">20000</field></record>
+    <record id="stock_dago_rm006" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm006'))]"/><field name="quantity">5000</field></record>
+    <record id="stock_dago_rm007" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm007'))]"/><field name="quantity">10000</field></record>
+    <record id="stock_dago_rm008" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm008'))]"/><field name="quantity">30000</field></record>
+    <record id="stock_dago_rm009" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm009'))]"/><field name="quantity">60</field></record>
+    <record id="stock_dago_rm010" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm010'))]"/><field name="quantity">3000</field></record>
+    <record id="stock_dago_rm011" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm011'))]"/><field name="quantity">100</field></record>
+    <record id="stock_dago_rm012" model="warkop.stock.balance"><field name="branch_id" ref="branch_dago"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm012'))]"/><field name="quantity">100</field></record>
+    <record id="stock_siliwangi_rm001" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm001'))]"/><field name="quantity">240</field></record>
+    <record id="stock_siliwangi_rm002" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm002'))]"/><field name="quantity">180</field></record>
+    <record id="stock_siliwangi_rm003" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm003'))]"/><field name="quantity">30000</field></record>
+    <record id="stock_siliwangi_rm004" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm004'))]"/><field name="quantity">6000</field></record>
+    <record id="stock_siliwangi_rm005" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm005'))]"/><field name="quantity">20000</field></record>
+    <record id="stock_siliwangi_rm006" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm006'))]"/><field name="quantity">5000</field></record>
+    <record id="stock_siliwangi_rm007" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm007'))]"/><field name="quantity">10000</field></record>
+    <record id="stock_siliwangi_rm008" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm008'))]"/><field name="quantity">30000</field></record>
+    <record id="stock_siliwangi_rm009" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm009'))]"/><field name="quantity">60</field></record>
+    <record id="stock_siliwangi_rm010" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm010'))]"/><field name="quantity">3000</field></record>
+    <record id="stock_siliwangi_rm011" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm011'))]"/><field name="quantity">100</field></record>
+    <record id="stock_siliwangi_rm012" model="warkop.stock.balance"><field name="branch_id" ref="branch_siliwangi"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm012'))]"/><field name="quantity">100</field></record>
 
     <!-- Finished menus MN-001 through MN-007 and their recipes -->
     <record id="mn001" model="warkop.menu"><field name="name">Mie Bangladesh Original</field><field name="sale_price">22000</field></record>
@@ -135,23 +122,22 @@
     <record id="mn005" model="warkop.menu"><field name="name">Teh Tarik Dingin / Hangat</field><field name="sale_price">12000</field></record>
     <record id="mn006" model="warkop.menu"><field name="name">Roti Bakar Srikaya Kopi Tiam</field><field name="sale_price">15000</field></record>
     <record id="mn007" model="warkop.menu"><field name="name">Dimsum Ayam Kukus (Isi 4)</field><field name="sale_price">18000</field></record>
-    <record id="mn001_rm001" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" ref="rm001_product"/><field name="quantity">1</field></record>
-    <record id="mn001_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" ref="rm002_product"/><field name="quantity">1</field></record>
-    <record id="mn001_rm004" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" ref="rm004_product"/><field name="quantity">35</field></record>
-    <record id="mn001_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" ref="rm007_product"/><field name="quantity">0.015</field></record>
-    <record id="mn002_rm001" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" ref="rm001_product"/><field name="quantity">1</field></record>
-    <record id="mn002_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" ref="rm002_product"/><field name="quantity">2</field></record>
-    <record id="mn002_rm004" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" ref="rm004_product"/><field name="quantity">35</field></record>
-    <record id="mn002_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" ref="rm007_product"/><field name="quantity">0.02</field></record>
-    <record id="mn003_rm003" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" ref="rm003_product"/><field name="quantity">150</field></record>
-    <record id="mn003_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" ref="rm002_product"/><field name="quantity">2</field></record>
-    <record id="mn003_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" ref="rm007_product"/><field name="quantity">0.02</field></record>
-    <record id="mn005_rm006" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" ref="rm006_product"/><field name="quantity">15</field></record>
-    <record id="mn005_rm005" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" ref="rm005_product"/><field name="quantity">45</field></record>
-    <record id="mn005_rm008" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" ref="rm008_product"/><field name="quantity">150</field></record>
-    <record id="mn006_rm009" model="warkop.menu.line"><field name="menu_id" ref="mn006"/><field name="product_id" ref="rm009_product"/><field name="quantity">2</field></record>
-    <record id="mn006_rm010" model="warkop.menu.line"><field name="menu_id" ref="mn006"/><field name="product_id" ref="rm010_product"/><field name="quantity">30</field></record>
-    <record id="mn007_rm011" model="warkop.menu.line"><field name="menu_id" ref="mn007"/><field name="product_id" ref="rm011_product"/><field name="quantity">4</field></record>
+    <record id="mn001_rm001" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm001'))]"/><field name="quantity">1</field></record>
+    <record id="mn001_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm002'))]"/><field name="quantity">1</field></record>
+    <record id="mn001_rm004" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm004'))]"/><field name="quantity">35</field></record>
+    <record id="mn001_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn001"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm007'))]"/><field name="quantity">0.015</field></record>
+    <record id="mn002_rm001" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm001'))]"/><field name="quantity">1</field></record>
+    <record id="mn002_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm002'))]"/><field name="quantity">2</field></record>
+    <record id="mn002_rm004" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm004'))]"/><field name="quantity">35</field></record>
+    <record id="mn002_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn002"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm007'))]"/><field name="quantity">0.02</field></record>
+    <record id="mn003_rm003" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm003'))]"/><field name="quantity">150</field></record>
+    <record id="mn003_rm002" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm002'))]"/><field name="quantity">2</field></record>
+    <record id="mn003_rm007" model="warkop.menu.line"><field name="menu_id" ref="mn003"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm007'))]"/><field name="quantity">0.02</field></record>
+    <record id="mn005_rm006" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm006'))]"/><field name="quantity">15</field></record>
+    <record id="mn005_rm005" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm005'))]"/><field name="quantity">45</field></record>
+    <record id="mn005_rm008" model="warkop.menu.line"><field name="menu_id" ref="mn005"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm008'))]"/><field name="quantity">150</field></record>
+    <record id="mn006_rm009" model="warkop.menu.line"><field name="menu_id" ref="mn006"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm009'))]"/><field name="quantity">2</field></record>
+    <record id="mn006_rm010" model="warkop.menu.line"><field name="menu_id" ref="mn006"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm010'))]"/><field name="quantity">30</field></record>
+    <record id="mn007_rm011" model="warkop.menu.line"><field name="menu_id" ref="mn007"/><field name="product_id" search="[('product_tmpl_id', '=', ref('rm011'))]"/><field name="quantity">4</field></record>
 </odoo>
-
 
