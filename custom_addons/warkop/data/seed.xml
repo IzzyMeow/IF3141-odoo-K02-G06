@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
     <!-- Branches from the master data -->
     <record id="branch_dago" model="warkop.branch">
         <field name="name">Cabang Dago (Jl. Ir. H. Juanda No. 343)</field>
