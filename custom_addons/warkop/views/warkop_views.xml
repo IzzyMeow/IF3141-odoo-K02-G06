@@ -8,40 +8,44 @@
     <record id="view_warkop_stock_report_form" model="ir.ui.view">
         <field name="name">warkop.stock.report.form</field><field name="model">warkop.stock.report</field>
         <field name="arch" type="xml"><form><header>
-            <button name="action_submit" type="object" string="Submit" class="btn-primary"
+            <button name="action_submit" type="object" string="Ajukan" class="btn-primary"
                     invisible="state not in ('draft', 'returned')"/>
-            <button name="action_verify" type="object" string="Verify"
+            <button name="action_verify" type="object" string="Verifikasi"
                     invisible="state != 'submitted'"/>
-            <button name="action_return" type="object" string="Return"
+            <button name="action_return" type="object" string="Kembalikan"
                     invisible="state != 'submitted'"/>
-            <button name="action_approve_adjustment" type="object" string="Approve Adjustment"
+            <button name="action_approve_adjustment" type="object" string="Setujui Penyesuaian"
                     invisible="state != 'waiting_approval'"/>
-            <button name="action_reject_adjustment" type="object" string="Reject Adjustment"
+            <button name="action_reject_adjustment" type="object" string="Tolak Penyesuaian"
                     invisible="state != 'waiting_approval'"/>
             <field name="state" widget="statusbar"/>
-        </header><sheet><group><field name="name"/><field name="branch_id"/>
-            <field name="report_date"/><field name="report_type"/><field name="reason"/>
-            <field name="evidence"/><field name="rejection_reason" readonly="1"/></group>
-            <field name="line_ids"><tree editable="bottom"><field name="product_id"/>
-                <field name="quantity"/><field name="recorded_quantity"/><field name="difference"/></tree></field>
+        </header><sheet><group><field name="name" string="Nomor Laporan"/><field name="branch_id" string="Cabang"/>
+            <field name="report_date" string="Tanggal Laporan"/><field name="report_type" string="Jenis Laporan"/>
+            <field name="reason" string="Alasan"/><field name="evidence" string="Bukti"/>
+            <field name="rejection_reason" string="Alasan Pengembalian" readonly="1"/></group>
+            <field name="line_ids" string="Rincian Bahan"><tree editable="bottom"><field name="product_id" string="Bahan"/>
+                <field name="quantity" string="Kuantitas Fisik/Waste"/><field name="recorded_quantity" string="Saldo Tercatat"/>
+                <field name="difference" string="Selisih"/></tree></field>
         </sheet><div class="oe_chatter"><field name="message_follower_ids"/>
             <field name="message_ids"/></div></form></field>
     </record>
     <record id="view_warkop_cash_closing_form" model="ir.ui.view">
         <field name="name">warkop.cash.closing.form</field><field name="model">warkop.cash.closing</field>
         <field name="arch" type="xml"><form><header>
-            <button name="action_submit" type="object" string="Submit" class="btn-primary"
+            <button name="action_submit" type="object" string="Ajukan" class="btn-primary"
                     invisible="state not in ('draft', 'returned')"/>
-            <button name="action_verify" type="object" string="Verify"
+            <button name="action_verify" type="object" string="Verifikasi"
                     invisible="state != 'submitted'"/>
-            <button name="action_return" type="object" string="Return"
+            <button name="action_return" type="object" string="Kembalikan"
                     invisible="state != 'submitted'"/>
             <field name="state" widget="statusbar"/>
         </header><sheet><group>
-            <field name="name"/><field name="branch_id"/><field name="closing_date"/>
-            <field name="shift"/><field name="opening_balance"/><field name="cash_counted"/>
-            <field name="qris_amount"/><field name="debit_amount"/><field name="deposit_amount"/>
-            <field name="expected_total"/><field name="rejection_reason"/>
+            <field name="name" string="Nomor Laporan"/><field name="branch_id" string="Cabang"/>
+            <field name="closing_date" string="Tanggal Operasional"/><field name="shift" string="Shift"/>
+            <field name="opening_balance" string="Saldo Awal"/><field name="cash_counted" string="Tunai Dihitung"/>
+            <field name="qris_amount" string="Penerimaan QRIS"/><field name="debit_amount" string="Penerimaan Debit"/>
+            <field name="deposit_amount" string="Setoran"/><field name="expected_total" string="Total Diharapkan"/>
+            <field name="rejection_reason" string="Alasan Pengembalian"/>
         </group></sheet></form></field>
     </record>
     <record id="view_warkop_stock_balance_tree" model="ir.ui.view">
@@ -79,11 +83,11 @@
     <record id="view_warkop_purchase_order_form" model="ir.ui.view">
         <field name="name">warkop.purchase.order.form</field><field name="model">warkop.purchase.order</field>
         <field name="arch" type="xml"><form><header>
-            <button name="action_confirm" type="object" string="Confirm" class="btn-primary"
+            <button name="action_confirm" type="object" string="Konfirmasi" class="btn-primary"
                     invisible="state not in ('draft', 'rejected')"/>
-            <button name="action_approve" type="object" string="Approve"
+            <button name="action_approve" type="object" string="Setujui"
                     invisible="state != 'waiting_approval'"/>
-            <button name="action_reject" type="object" string="Reject"
+            <button name="action_reject" type="object" string="Tolak"
                     invisible="state != 'waiting_approval'"/>
             <field name="state" widget="statusbar"/>
         </header><sheet><group><field name="name"/><field name="branch_id"/>
@@ -99,7 +103,7 @@
     <record id="view_warkop_sales_import_form" model="ir.ui.view">
         <field name="name">warkop.sales.import.form</field><field name="model">warkop.sales.import</field>
         <field name="arch" type="xml"><form><header>
-            <button name="action_process" type="object" string="Process" class="btn-primary"
+            <button name="action_process" type="object" string="Proses Impor" class="btn-primary"
                     invisible="state != 'draft'"/><field name="state" widget="statusbar"/>
         </header><sheet><group><field name="name"/><field name="branch_id"/>
             <field name="imported_at"/></group><field name="line_ids"><tree editable="bottom">
@@ -118,14 +122,15 @@
         <field name="name">warkop.cash.consolidation.form</field>
         <field name="model">warkop.cash.consolidation</field>
         <field name="arch" type="xml"><form><header>
-            <button name="action_post" type="object" string="Consolidate" class="btn-primary"
+            <button name="action_post" type="object" string="Konsolidasikan" class="btn-primary"
                     invisible="state != 'draft'"/>
-            <button name="action_reconcile" type="object" string="Reconcile"
+            <button name="action_reconcile" type="object" string="Rekonsiliasikan"
                     invisible="state != 'needs_review'"/><field name="state" widget="statusbar"/>
-        </header><sheet><group><field name="name"/><field name="consolidation_date"/>
-            <field name="closing_ids"/><field name="total_cash"/><field name="total_qris"/>
-            <field name="total_debit"/><field name="total_deposit"/><field name="pos_total"/>
-            <field name="variance"/><field name="reconciliation_note"/></group></sheet></form></field>
+        </header><sheet><group>        <field name="name" string="Nama Konsolidasi"/><field name="consolidation_date" string="Tanggal Operasional"/>
+        <field name="closing_ids" string="Tutup Kas Terverifikasi"/><field name="total_cash" string="Total Tunai"/>
+        <field name="total_qris" string="Total QRIS"/><field name="total_debit" string="Total Debit"/>
+        <field name="total_deposit" string="Total Setoran"/><field name="pos_total" string="Total Penjualan POS"/>
+        <field name="variance" string="Selisih"/><field name="reconciliation_note" string="Penjelasan Selisih"/></group></sheet></form></field>
     </record>
     <record id="view_warkop_menu_tree" model="ir.ui.view">
         <field name="name">warkop.menu.tree</field><field name="model">warkop.menu</field>
@@ -136,11 +141,12 @@
     <record id="view_warkop_menu_form" model="ir.ui.view">
         <field name="name">warkop.menu.form</field><field name="model">warkop.menu</field>
         <field name="arch" type="xml"><form><header><button name="action_recalculate" type="object"
-            string="Recalculate" class="btn-primary"/><field name="state" widget="statusbar"/></header>
-            <sheet><group><field name="name"/><field name="sale_price"/><field name="waste_percent"/>
-                <field name="hpp"/><field name="margin_amount"/><field name="margin_percent"/></group>
-                <field name="line_ids"><tree editable="bottom"><field name="product_id"/>
-                    <field name="quantity"/><field name="uom_id"/></tree></field>
+            string="Hitung Ulang" class="btn-primary"/><field name="state" widget="statusbar"/></header>
+            <sheet><group><field name="name" string="Nama Menu"/><field name="sale_price" string="Harga Jual"/>
+                <field name="waste_percent" string="Toleransi Waste"/><field name="hpp" string="HPP"/>
+                <field name="margin_amount" string="Margin Nominal"/><field name="margin_percent" string="Margin Persentase"/></group>
+                <field name="line_ids" string="Resep Menu"><tree editable="bottom"><field name="product_id" string="Bahan"/>
+                    <field name="quantity" string="Takaran"/><field name="uom_id" string="Satuan"/></tree></field>
             </sheet><div class="oe_chatter"><field name="message_follower_ids"/>
                 <field name="message_ids"/></div></form></field>
     </record>

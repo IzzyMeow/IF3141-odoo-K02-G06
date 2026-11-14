@@ -1,5 +1,5 @@
 {
-    "name": "Warkop H. Mahmud Operations",
+    "name": "Warkop H. Mahmud",
     "summary": "Inventory, purchasing, cash closing, and menu cost control",
     "version": "17.0.1.0.0",
     "license": "LGPL-3",
@@ -11,6 +11,7 @@
         "security/security.xml",
         "security/ir.model.access.csv",
         "data/sequence.xml",
+        "data/seed.xml",
         "views/warkop_views.xml",
         "views/menus.xml",
     ],
